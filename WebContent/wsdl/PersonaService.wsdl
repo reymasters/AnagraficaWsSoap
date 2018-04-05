@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://service.au.it" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.au.it" xmlns:intf="http://service.au.it" xmlns:tns1="http://bean.au.it" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://service.au.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://bean.au.it"/>
+   <element name="addPersonaCustom">
+    <complexType>
+     <sequence>
+      <element name="nome" type="xsd:string"/>
+      <element name="cognome" type="xsd:string"/>
+      <element name="mail" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addPersonaCustomResponse">
+    <complexType/>
+   </element>
+   <element name="getPersona">
+    <complexType>
+     <sequence>
+      <element name="id" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getPersonaResponse">
+    <complexType>
+     <sequence>
+      <element name="getPersonaReturn" type="tns1:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addPersona">
+    <complexType>
+     <sequence>
+      <element name="p1" type="tns1:Persona"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addPersonaResponse">
+    <complexType/>
+   </element>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://bean.au.it" xmlns="http://www.w3.org/2001/XMLSchema">
+   <complexType name="Persona">
+    <sequence>
+     <element name="cognome" nillable="true" type="xsd:string"/>
+     <element name="mail" nillable="true" type="xsd:string"/>
+     <element name="nome" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="addPersonaCustomResponse">
+
+      <wsdl:part element="impl:addPersonaCustomResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPersonaCustomRequest">
+
+      <wsdl:part element="impl:addPersonaCustom" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPersonaResponse">
+
+      <wsdl:part element="impl:getPersonaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getPersonaRequest">
+
+      <wsdl:part element="impl:getPersona" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPersonaRequest">
+
+      <wsdl:part element="impl:addPersona" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addPersonaResponse">
+
+      <wsdl:part element="impl:addPersonaResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="PersonaService">
+
+      <wsdl:operation name="addPersonaCustom">
+
+         <wsdl:input message="impl:addPersonaCustomRequest" name="addPersonaCustomRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addPersonaCustomResponse" name="addPersonaCustomResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPersona">
+
+         <wsdl:input message="impl:getPersonaRequest" name="getPersonaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getPersonaResponse" name="getPersonaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPersona">
+
+         <wsdl:input message="impl:addPersonaRequest" name="addPersonaRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addPersonaResponse" name="addPersonaResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="PersonaServiceSoapBinding" type="impl:PersonaService">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addPersonaCustom">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addPersonaCustomRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addPersonaCustomResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getPersona">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getPersonaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getPersonaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addPersona">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addPersonaRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addPersonaResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="PersonaServiceService">
+
+      <wsdl:port binding="impl:PersonaServiceSoapBinding" name="PersonaService">
+
+         <wsdlsoap:address location="http://localhost:8080/AnagraficaWsSoap/services/PersonaService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from PersonaServiceService WSDL service -->
+
+  <service name="PersonaService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://service.au.it"/>
+      <parameter name="wsdlServiceElement" value="PersonaServiceService"/>
+      <parameter name="schemaQualified" value="http://bean.au.it,http://service.au.it"/>
+      <parameter name="wsdlServicePort" value="PersonaService"/>
+      <parameter name="className" value="it.au.service.PersonaService"/>
+      <parameter name="wsdlPortType" value="PersonaService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://service.au.it" name="addPersonaCustom" qname="operNS:addPersonaCustom" soapAction="">
+        <parameter xmlns:pns="http://service.au.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:nome" type="tns:string"/>
+        <parameter xmlns:pns="http://service.au.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:cognome" type="tns:string"/>
+        <parameter xmlns:pns="http://service.au.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:mail" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://service.au.it" xmlns:retNS="http://service.au.it" xmlns:rtns="http://bean.au.it" name="getPersona" qname="operNS:getPersona" returnQName="retNS:getPersonaReturn" returnType="rtns:Persona" soapAction="">
+        <parameter xmlns:pns="http://service.au.it" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:id" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://service.au.it" name="addPersona" qname="operNS:addPersona" soapAction="">
+        <parameter xmlns:pns="http://service.au.it" xmlns:tns="http://bean.au.it" qname="pns:p1" type="tns:Persona"/>
+      </operation>
+      <parameter name="allowedMethods" value="addPersona getPersona addPersonaCustom"/>
+
+      <typeMapping xmlns:ns="http://bean.au.it" qname="ns:Persona" type="java:it.au.bean.Persona" serializer="org.apache.axis.encoding.ser.BeanSerializerFactory" deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory" encodingStyle=""/>
+  </service>
+</deployment>
